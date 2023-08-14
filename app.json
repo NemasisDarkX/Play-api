@@ -21,9 +21,9 @@
    "success_url":"/",
    "env":{
 
-      "NAME":{
+      "PORT":{
 
-         "description":"Name of your bot",
+         "description":"PORT FOR PROCESS",
 
          "required":true
       }
