@@ -19,6 +19,15 @@
    "logo":"",
 
    "success_url":"/",
+   "env":{
+
+      "NAME":{
+
+         "description":"Name of your bot",
+
+         "required":true
+      }
+      },
 
    "buildpacks":[
 
