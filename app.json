@@ -1,0 +1,33 @@
+{
+
+   "name":"Cosmo-api",
+
+   "description":"Api with play features",
+
+   "keywords":[
+
+      "bot",
+
+      "whatsapp"
+
+   ],
+
+   "website":"https://github.com/NemasisDarkX/Play-api/blob/main/README.md",
+
+   "repository":"https://github.com/NemasisDarkX/Play-api.git",
+
+   "logo":"",
+
+   "success_url":"/",
+
+   "buildpacks":[
+
+      {
+
+         "url":"heroku/nodejs"
+
+      }
+
+   ]
+
+}
