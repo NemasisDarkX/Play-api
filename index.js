@@ -2,11 +2,11 @@ const express = require('express');
 const axios = require('axios');
 
 const app = express();
-const port = 4000;
+const port = process.env.PORT || 4000; // Use Heroku's provided PORT or default to 4000
 
 app.use(express.json());
 
-app.get('/play', async (req, res) => {
+app.get('/', async (req, res) => { // Change the endpoint path to '/'
     const { keyword } = req.query;
 
     const searchOptions = {
@@ -16,7 +16,7 @@ app.get('/play', async (req, res) => {
             keyword: keyword
         },
         headers: {
-                'X-RapidAPI-Key': '7d2d1e4dc9mshd85519bfab23070p10f9a4jsn2160653ac4aa',
+            'X-RapidAPI-Key': '7d2d1e4dc9mshd85519bfab23070p10f9a4jsn2160653ac4aa',
             'X-RapidAPI-Host': 'youtube-media-downloader.p.rapidapi.com'
         }
     };
@@ -34,7 +34,7 @@ app.get('/play', async (req, res) => {
                 url: 'https://youtube-mp36.p.rapidapi.com/dl',
                 params: { id: firstVideoId },
                 headers: {
-                'X-RapidAPI-Key': '7d2d1e4dc9mshd85519bfab23070p10f9a4jsn2160653ac4aa',
+                    'X-RapidAPI-Key': '7d2d1e4dc9mshd85519bfab23070p10f9a4jsn2160653ac4aa',
                     'X-RapidAPI-Host': 'youtube-mp36.p.rapidapi.com'
                 }
             };
