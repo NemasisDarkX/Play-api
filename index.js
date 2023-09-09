@@ -1,3 +1,5 @@
+//made using 2 open api from rapidapi
+
 const express = require('express');
 const axios = require('axios');
 
@@ -6,8 +8,10 @@ const port = process.env.PORT || 4000;
 
 app.use(express.json());
 
-app.get('play/', async (req, res) => { 
+app.get('/play', async (req, res) => { 
     const { keyword } = req.query;
+
+    console.log(`Received a request to search for videos with keyword: ${keyword}`);
 
     const searchOptions = {
         method: 'GET',
@@ -29,6 +33,8 @@ app.get('play/', async (req, res) => {
             const firstVideo = data.items[0];
             const firstVideoId = firstVideo.id;
 
+            console.log(`Found a video with ID: ${firstVideoId}`);
+
             const infoOptions = {
                 method: 'GET',
                 url: 'https://youtube-mp36.p.rapidapi.com/dl',
@@ -43,12 +49,15 @@ app.get('play/', async (req, res) => {
                 const infoResponse = await axios.request(infoOptions);
                 const capt = `Here is the requested audio file: ${infoResponse.data.title}`;
 
+                console.log(`Successfully fetched audio: ${infoResponse.data.title}`);
+
                 res.json({ message: capt, audioUrl: infoResponse.data.link });
             } catch (infoError) {
                 console.error(infoError);
                 res.status(500).json({ message: 'An error occurred while fetching the YouTube MP3 download link.' });
             }
         } else {
+            console.log('No videos found.');
             res.status(404).json({ message: 'No videos found.' });
         }
     } catch (searchError) {
@@ -59,4 +68,5 @@ app.get('play/', async (req, res) => {
 
 app.listen(port, () => {
     console.log(`Server is listening on port ${port}`);
+    console.log(`http://localhost:${port}/play?keyword={your_keyword}`);
 });
