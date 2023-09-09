@@ -2,11 +2,11 @@ const express = require('express');
 const axios = require('axios');
 
 const app = express();
-const port = process.env.PORT || 4000; // Use Heroku's provided PORT or default to 4000
+const port = process.env.PORT || 4000;
 
 app.use(express.json());
 
-app.get('/', async (req, res) => { // Change the endpoint path to '/'
+app.get('play/', async (req, res) => { 
     const { keyword } = req.query;
 
     const searchOptions = {
